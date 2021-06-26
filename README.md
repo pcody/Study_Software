@@ -12,23 +12,19 @@
 
 ## [Git](./git)
 
-* git 기초 내용
+- git 기초 내용
 
 
 
-## IoT
+## [IoT](./IoT)
 
-### Arduino
-
-- 
-
-### Raspberry Pi
-
-- 
+- Arduino
+- Raspberry Pi
+- 통신
 
 
 
-## 기타
+## [ETC](./etc)
 
 * [마크다운 문법 정리](./Markdown.md)
 
