@@ -43,8 +43,8 @@
 
 - 실행
   mosquitto -v
-- SUB : mosquitto_sub -d -t hello/world
-- PUB : mosquitto_pub -d -t mydata/stream -m "ppopoph"
+- SUB : mosquitto_sub -h 192.168.xxx.xxx -t hello/world
+- PUB : mosquitto_pub -h 192.168.xxx.xxx -t hello/world -m "ppopoph"
 
 - Process Kill
   윈도우키 -> 관리자권한으로 cmd 실행
