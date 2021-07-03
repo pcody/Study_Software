@@ -4,13 +4,13 @@
 
 
 
-## [Algorithm](./algorithm)
+## [Algorithm](./Algorithm)
 
 - 알고리즘 학습 내용 및 예제 코드
 
 
 
-## [Git](./git)
+## [Git](./Git)
 
 - git 기초 내용
 
