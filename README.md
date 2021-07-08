@@ -12,15 +12,27 @@
 
 ## [Git](./Git)
 
-- git 기초 내용
+- git 기초
+- git 명령어 응용
 
 
 
-## [IoT](./IoT)
+## [Arduino](./IoT/Arduino)
 
-- [Arduino](./IoT/Arduino)
-- Raspberry Pi
-- 통신
+- arduino 예제 코드
+
+
+
+## [RaspberryPi](./Network)
+
+- raspberrypi 설정 및 조작
+
+
+
+## [Network](./Network)
+
+- 네트워크 기초
+- 통신 예제
 
 
 
