@@ -18,7 +18,7 @@
 
 ## [IoT](./IoT)
 
-- Arduino
+- [Arduino](./IoT/Arduino)
 - Raspberry Pi
 - 통신
 
