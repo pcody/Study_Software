@@ -4,12 +4,6 @@
 
 
 
-## [Algorithm](./Algorithm)
-
-- 알고리즘 학습 내용 및 예제 코드
-
-
-
 ## [Git](./Git)
 
 - git 기초
@@ -33,6 +27,12 @@
 
 - 네트워크 기초
 - 통신 예제
+
+
+
+## [Spring](./Spring)
+
+- Java Spring 기초
 
 
 
