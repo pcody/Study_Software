@@ -16,9 +16,9 @@
 
   컨트롤러 → 서비스 → 리포지토리 → DB
 
-  ​               ↘       ↓       ↙
+  　　　　↘       ↓       ↙
 
-  ​                     도메인
+  　　　　　  도메인
 
   컨트롤러 : 웹 MVC의 컨트롤러
 
@@ -32,9 +32,9 @@
 
   MemberService → Interface (MemberRepository)
 
-  ​                                        ↑
+  　　　　　　　　　　↑
 
-  ​                             Memory Member Repository
+  　　　　　　Memory Member Repository
 
   인터페이스 구현하여 클래스를 쉽게 변경할 수 있도록 설계
 
