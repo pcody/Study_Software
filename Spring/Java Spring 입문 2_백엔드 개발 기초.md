@@ -111,10 +111,11 @@
 
 - 패키지를 import하려면
 
-  import org.assertj.core.api.Assertions;
+  import org.assertj.core.api.Assertions.*;
 
 - 패키지 내 메소드 명으로 바로 사용하려면
 
   import static org.assertj.core.api.Assertions.*;
 
   **static** 을 붙여준다.
+
