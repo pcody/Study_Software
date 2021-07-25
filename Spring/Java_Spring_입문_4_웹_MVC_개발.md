@@ -10,7 +10,7 @@
 
 - index.html보다 컨트롤러를 먼저 찾기 때문에 ("/")을 Mapping한 컨트롤러를 먼저 찾아온다.
 
-![image-20210721213724505](C:\Users\gioan\AppData\Roaming\Typora\typora-user-images\image-20210721213724505.png)
+![image-20210721213724505](md-images/image-20210721213724505.png)
 
 - 컨트롤러 클래스에서 (@Controller) @GetMapping("/[문자열1]/[문자열2]...") 형식으로 URL을 해당 HTML을 반환하는 메소드에 mapping해준다.
 
