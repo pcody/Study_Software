@@ -11,6 +11,10 @@
 - 공통 관심 사항 (cross-cutting concern)
 - 핵심 관심 사항 (core concern)
 
+![image-20210724140234926](md-images/image-20210724140234926.png)
+
+
+
 ### 문제점
 
 - 회원가입, 회원 조회에 시간을 측정하는 기능은 핵심 관심사항이 아니다.
@@ -21,8 +25,36 @@
 
 
 
+### AOP 적용
+
+- AOP : Aspect Oriented Programming
+
+![image-20210724140037244](md-images/image-20210724140037244.png)
+
+- aop 패키지에 클래스 만들어서 @Aspect 사용
+
+- 함수에는 @Around("execution(* hello.hellospring..*(..))") 사용하여 패키지 하위에 다 적용할 것을 명시
+
+- 시간을 측정하는 로직을 별도로 만들어 핵심 관심사항을 깔끔하게 유지한다.
+
+- 원하는 적용 대상을 선택할 수 있다.
+
+- 의존관계
+
+  ![image-20210725201459049](md-images/image-20210725201459049.png)
+
+  
+
+  ![image-20210725201243634](md-images/image-20210725201243634.png)
+
+
+
+
+
 ### 기타
 
 - 단축키
   - ctrl + alt + v : 리턴타입에 맞게 변수를 만들어줌
+  
+    ctrl + alt + n : 인라인 표현법으로 바꿔줌
 
