@@ -11,7 +11,7 @@
 
 
 
-## [Arduino](./IoT/Arduino)
+## [Arduino](./Arduino)
 
 - arduino 예제 코드
 
