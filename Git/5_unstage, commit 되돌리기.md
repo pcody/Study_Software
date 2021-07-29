@@ -14,7 +14,7 @@ add하여 stage에 올라간 파일(녹색표시)을 되돌리고 싶으면
 
   git reset HEAD -- .
 
-![image-20210729214219787](C:\Users\gioan\AppData\Roaming\Typora\typora-user-images\image-20210729214219787.png)
+![image-20210729214219787](md-images/image-20210729214219787.png)
 
 
 
