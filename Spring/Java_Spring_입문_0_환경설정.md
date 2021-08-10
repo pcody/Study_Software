@@ -2,7 +2,16 @@
 
 
 
-### JDK 설치 및 Java환경변수 설정
+### JDK, IDE 설치 및 Java환경변수 설정
+
+#### JDK, IntelliJ 설치
+
+- Java 11 설치
+- IntelliJ 설치
+
+
+
+#### Java 환경변수 설정
 
 - classpath 추가
 
@@ -22,9 +31,50 @@
 
 
 
+### Spring Boot 생성 및 IntelliJ 실행
+
+#### spring boot 생성
+
+- https://start.spring.io/
+
+- Gradle, Java 선택
+
+- Spring Boot
+
+  SNAP SHOT -> 만들고 있는 버전
+
+  M1 -> 정식 릴리즈는 아님
+
+  2.5.3 뒤에 아무것도 없는 것이 정식버전
+
+- 그룹 : 기업명 등등
+
+- 아티팩트 : 프로젝트명
+
+- Dependencies : spring web, **thymeleaf(HTML을 만드는 템플릿 엔진)** 선택
+
+- 다운로드하여 압축 해제
+
+![image-20210810133513521](md-images/image-20210810133513521.png)
 
 
-### Build가 안될 때
+
+#### IntelliJ 실행
+
+- build.gradle 파일의 상위 폴더를 눌러서 프로젝트를 실행하거나
+- build.gradle 파일을 프로젝트로 열거나 (open as a project)
+
+![image-20210810134808140](md-images/image-20210810134808140.png)
+
+
+
+- 아래 설정을 하면 gradle을 통하지 않고 IntelliJ에서 바로 java를 바로 실행하므로 실행속도가 빨라질 수 있음
+
+![image-20210810141239111](md-images/image-20210810141239111.png)
+
+
+
+#### IntelliJ Build가 안될 때
 
 1. build.gradle파일을 직접 프로젝트로 열어준다. (open as a project)
 2. .gradle, .idea 삭제 후 Intellij 재실행하여 1을 반복한다. (dependency 새로 import 하기)
@@ -50,3 +100,51 @@ gradle 6.8.3으로 바꾸면 빌드가 잘 되는데, 팀원들과 동일한 버
 ![image-20210729154959705](md-images/image-20210729154959705.png)
 
 ![image-20210729155027508](md-images/image-20210729155027508.png)
+
+
+
+### 파일트리
+
+- gradle
+
+  그래들 사용을 위한 폴더
+
+- main
+
+  하위에 
+
+  java 하위에 패키지와 소스파일
+
+  resources 하위에 xml, html 및 설정파일
+
+- test
+
+  test 하위에 테스트 코드를 분리해 놓았음
+
+- build.gradle
+
+  의존관계 및 버전 설정 등이 정의되어 있다.
+
+  ```java
+  repositories {
+  	mavenCentral()
+  } // mavenCentral 이라는 사이트, 의존성 파일들을 다운받는 경로
+  
+  dependencies {
+  	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+  	implementation 'org.springframework.boot:spring-boot-starter-web'
+  	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  } // spring boot 파일을 내려받을 때 선택한 dependencies, 개발 과정에서 여러가지를 더 추가할 수 있다
+  ```
+
+  
+
+### 첫 실행 화면
+
+- 환경설정 완료
+- tomcat이란 웹서버를 내장하고 있고, 여기서 스프링을 실행함
+- 보여줄 페이지가 없기 때문에 404 에러가 나온 것임
+
+![image-20210810140510388](md-images/image-20210810140510388.png)
+
+![image-20210810140526184](md-images/image-20210810140526184.png)
