@@ -30,7 +30,7 @@
 
   대략 아래 그림과 같은 구조
 
-  ![image-20210802222524761](C:\Users\gioan\AppData\Roaming\Typora\typora-user-images\image-20210802222524761.png)
+  ![image-20210802222524761](md-images/image-20210802222524761.png)
 
 - fetch한 내용 별로 branch가 생성되어 Histroy를 각각 가지게 되는데,
 
