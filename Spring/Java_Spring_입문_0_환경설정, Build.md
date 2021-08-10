@@ -141,9 +141,9 @@ gradle 6.8.3으로 바꾸면 빌드가 잘 되는데, 팀원들과 동일한 버
   } // spring boot 파일을 내려받을 때 선택한 dependencies, 개발 과정에서 여러가지를 더 추가할 수 있다
   ```
 
-  
 
-### 첫 실행 화면
+
+### 초기 어플리케이션 실행
 
 - 환경설정 완료
 - tomcat이란 웹서버를 내장하고 있고, 여기서 스프링을 실행함
@@ -180,4 +180,48 @@ gradle 6.8.3으로 바꾸면 빌드가 잘 되는데, 팀원들과 동일한 버
   - mockito: 목 라이브러리
   - assertj: 테스트 코드를 좀 더 편하게 작성할 수 있도록 도와주는  라이브러리
   - spring-test: 스프링 통합 테스트 지원
+
+
+
+### View설정 및 실행
+
+#### welcome page
+
+- index라는 이름을 welcome페이지로 사용하므로 resources/static/ 하위에 index.html를 만들어주면 됨
+- run log에서 확인 가능
+
+![image-20210810152726387](md-images/image-20210810152726387.png)
+
+
+
+#### thymeleaf 템플릿엔진 동작
+
+![image-20210810210535930](md-images/image-20210810210535930.png)
+
+- 컨트롤러에서 리턴 값으로 반환한 문자를 뷰리졸버(viewResolver)가 화면을 찾아서 처리
+- 'resources:templates/' + (ViewName) + '.html'
+
+
+
+#### 서버에서 Build하기 (IDE 사용X)
+
+- 프로젝트 폴더로 이동해서 아래 커맨드 입력
+- git bash 열어서 쳐도 됨
+
+```bash
+./gradlew build
+cd build/libs
+java -jar hello-spring-0.0.1-SNAPSHOT.jar
+./gradlew clean build // 완전히 지우고 다시 빌드
+```
+
+
+
+- window cmd 열어서 프로젝트 폴더로 이동해서 아래 커맨드 입력
+
+```bash
+gradlew // gradlew.bat 실행 명령어
+cd build/libs
+java -jar hello-spring-0.0.1-SNAPSHOT.jar
+```
 
