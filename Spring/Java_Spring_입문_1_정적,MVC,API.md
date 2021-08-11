@@ -133,7 +133,7 @@ static class Hello {
 
 ​      문자 : StringConverter, 객체 : JsonConverter ---> 웹브라우저
 
-![image-20210811150809869](md-images/image-20210811150809869.png)
+![image-20210811151903762](md-images/image-20210811151903762.png)
 
 
 
@@ -150,5 +150,4 @@ static class Hello {
     (Jackson, gson : 객체->Jason 변환 라이브러리)
 
   - byte 및 기타 처리는 HttpMessageConverter가 기본
-  
 
