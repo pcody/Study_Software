@@ -69,7 +69,7 @@
 
 ## 웹
 
-* [쿠키 vs 세션](https://github.com/cano721/CS_STUDY/Web/2021-08-24-쿠키%20vs%20세션.md)
+* [쿠키 vs 세션](https://github.com/cano721/CS_STUDY/blob/main/Web/2021-08-24-%EC%BF%A0%ED%82%A4%20vs%20%EC%84%B8%EC%85%98.md)
 
 
 
