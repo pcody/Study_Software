@@ -67,6 +67,12 @@
 
 
 
+## 웹
+
+* [쿠키 vs 세션](https://github.com/cano721/CS_STUDY/Web/2021-08-24-쿠키%20vs%20세션.md)
+
+
+
 ## 키워드 모음
 
 - 뮤텍스와 세마포어의 차이 https://worthpreading.tistory.com/90
