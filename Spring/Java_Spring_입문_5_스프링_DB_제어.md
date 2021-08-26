@@ -49,7 +49,9 @@
 
   
 
-- 접속 URL은 소켓으로 연결 jdbc:h2:tcp://localhost/~/test
+- 파일로 접근하면 웹콘솔, 앱하고 충돌날 수 있으므로
+
+- 파일에 직접 접근하지 않고 소켓으로 연결 jdbc:h2:tcp://localhost/~/test
 
   ```sql
   drop table if exists member CASCADE;
@@ -98,6 +100,7 @@
   public class SpringConfig {
   
       // 리포지토리 Bean을 Jdbc로 바꿔주면서 생성자에 필요한 변수 설정 및 @Autowired설정
+      // 스프링에서 설정을 보고 DataSource를 Bean객체로 관리하므로 Autowired해주면 됨
       private final DataSource dataSource;
       @Autowired
       public SpringConfig(DataSource dataSource) {
@@ -126,6 +129,10 @@
 
 - 클래스 관계
 
+  MemberRepository 인터페이스의 메소드들을 구현한 클래스가 MemoryMemberRepository, JdbcMemberRepository이며,
+  
+  구현체의 의존관계만 바꾸면 사용이 가능하다
+  
   ![image-20210722160238339](md-images/image-20210722160238339.png)
 
 
@@ -138,13 +145,79 @@
 
 ### 통합 테스트
 
+- 통합테스트: 스프링 컨테이너, DB까지 연동하는 테스트
+
+- 단위테스트: 순수한 자바 코드로만 최소한의 단위에서 테스트
+
+- 단위테스트 위주로 진행하도록 훈련하자
+
 - Spring과 함께 테스트를 진행하기 위해 @SpringBootTest annotation을 사용한다. (DB도 포함)
 
 - Transaction을 commit하지 않고 테스트 후 이전 상태로 되돌리기 위해(rollback) @Transactional annotation을 사용한다.
 
-  테스트 시작 전에 트랜잭션을 시작하고 테스트 완료 후 항상 롤백하여 다음 테스트에 영향을 주지 않도록 하기 위함
+  테스트 시작 전에 트랜잭션을 시작하고 테스트 완료 후 항상 롤백하여 다음 테스트에 영향을 주지 않도록 하기 위함 (테스트 각각 적용됨)
+
+  테스트케이스에 Transaction을 썼을 때만 해당 효과 발현
+
+  커밋하려면 @Commit annotation도 있음
 
 - java만 실행하는 테스트를 단위테스트라고 한다.
+
+  ```java
+  @SpringBootTest
+  // Transactional 사용 안 하면 사용한 데이터가 DB에 남는다
+  // Test가 끝난 후 Rollback 하여 변경내용을 DB에 반영하지 않음으로써
+  // Test를 반복할 수 있도록 도와준다
+  //@Transactional
+  class MemberServiceIntegrationTest {
+  
+  //    MemberService memberService;
+  //    MemoryMemberRepository memberRepository;
+  //
+  //    @BeforeEach
+  //    public void beforeEach() {
+  //        memberRepository = new MemoryMemberRepository();
+  //        memberService = new MemberService(memberRepository);
+  //    }
+  // 위처럼 직접 객체 생성하는 방법 말고
+  // 아래와 같이 스프링으로부터 객체를 받아야한다.
+      @Autowired MemberService memberService;
+      @Autowired MemberRepository memberRepository;
+      // 대충 field injection으로...ㅎㅎ
+  
+  // 여긴 지우고 Transactional을 사용하면 됨
+  //    @AfterEach
+  //    public void afterEach() {
+  //        memberRepository.clearStore();
+  //    }
+  
+      @Test
+      void 회원가입() {
+          // given
+          // ...
+  
+          // when
+          // ...
+  
+          // then
+          // ...
+      }
+  
+      @Test
+      public void 중복_회원_예외() {
+          // given
+          // ...
+  
+          // when
+          // ...
+  
+          // then
+          // 
+      }
+  }
+  ```
+
+  
 
 
 
@@ -156,25 +229,95 @@
 
 - 디자인 패턴 중 template method pattern을 사용하여 코드를 줄임..
 
+  ```java
+  public class JdbcTemplateMemberRepository implements MemberRepository{
+  
+      private final JdbcTemplate jdbcTemplate;
+  
+  //    @Autowired
+  //    public JdbcTemplateMemberRepository(DataSource dataSource) {
+  //        jdbcTemplate = new JdbcTemplate(dataSource);
+  //    }
+  
+      // 생성자 1개면 Autowired 생략 가능
+      public JdbcTemplateMemberRepository(DataSource dataSource) {
+          jdbcTemplate = new JdbcTemplate(dataSource);
+      }
+  
+      @Override
+      public Member save(Member member) {
+          // ...
+      }
+  
+      @Override
+      public Optional<Member> findById(Long id) {
+          // ...
+      }
+  
+      @Override
+      public Optional<Member> findByName(String name) {
+          // ...
+      }
+  
+      @Override
+      public List<Member> findAll() {
+          // ...
+      }
+  
+      private RowMapper<Member> memberRowMapper() {
+          // ...
+      }
+  }
+  ```
+
+- springconfig
+
+  ```java
+  @Configuration
+  public class SpringConfig {
+  
+  // JdbcTemplateMemberRepository 사용
+      private DataSource dataSource;
+  
+      @Autowired
+      public SpringConfig(DataSource dataSource) {
+          this.dataSource = dataSource;
+      }
+  
+      @Bean
+      public MemberService memberService() {
+          return new MemberService(memberRepository());
+      }
+  
+      @Bean
+      public MemberRepository memberRepository() {
+          return new JdbcTemplateMemberRepository(dataSource);
+      }
+  }
+  ```
+
+  
+
 
 
 ### JPA
 
 - SQL 쿼리를 JPA에서 자동으로 처리해줌으로써 개발 생산성을 크게 높여준다.
+
 - JPA를 사용하면 SQL과 데이터 중심의 설계에서 객체 중심의 설계로 패러다임 전환 가능
 
 - build.gradle 설정
 
   ```java
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-  runtimeOnly 'com.h2database:h2' // 같이 하는게 맞나?!
+  runtimeOnly 'com.h2database:h2'
   ```
 
 - src/main/resources/application.properties 설정
 
   ```java
   spring.jpa.show-sql=true // jpa가 날리는 sql을 볼 수 있다.
-  spring.jpa.hibernate.ddl-auto=none // 객체를 보고 테이블을 만들어주는 기능은 일단 다 만들어져 있으므로 끈다. none or create
+  spring.jpa.hibernate.ddl-auto=none // 객체를 보고 테이블을 만들어주는 기능은 일단 테이블을 다 만들어두었으므로 끈다. none or create
   ```
 
 - JPA는 인터페이스 제공을 하고 구현체로 하이버네이트, 이클립스 등 여러개 벤더를 사용한다.
@@ -187,12 +330,105 @@
   @Entity
   
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-  //(DB가 자동 생성해주는 identity 전략)
+  
+  
+  import javax.persistence.*;
+  
+  // persistence의 Entity Annotation을 사용 = JPA 객체임
+  @Entity
+  public class Member {
+  
+      @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+      //(DB가 자동 생성해주는 identity 전략)
+      private Long id;
+  ```
+
+- 리포지토리 EntityManager라는 것으로 엔티티를 관리한다
+
+- build.gradle에서 JPA 라이브러리 설정을 하면 스프링부트에서 자동으로 엔티티매니저를 생성해줌
+
+- 만든 것을 Injection해서 쓰면 됨
+
+  ```java
+  public class JpaMemberRepository implements MemberRepository {
+  
+      private final EntityManager em;
+  
+      public JpaMemberRepository(EntityManager em) {
+          this.em = em;
+      }
+      
+      @Override
+      public Member save(Member member) {
+          em.persist(member);
+          return member;
+      }
+  
+      @Override
+      public Optional<Member> findById(Long id) {
+          Member member = em.find(Member.class, id);
+          return Optional.ofNullable(member);
+      }
+  
+      @Override
+      public Optional<Member> findByName(String name) {
+          List<Member> result = em.createQuery("select m from Member m where m.name = :name", Member.class)
+                  .setParameter("name", name)
+                  .getResultList();
+  
+          return result.stream().findAny();
+      }
+  
+      @Override
+      public List<Member> findAll() {
+          return em.createQuery("select m from Member m", Member.class)
+                  .getResultList();
+          // select * 이 아니고 객체 자체 m을 명시해준다
+      }
+  }
   ```
 
 - business로직에 @Transactional 표기 해준다.
 
+  ```java
+  // JPA사용 시 서비스 계층에 Transactional이 있어야 DB 접근 및 생성, 수정 등이 가능하다
+  // 모든 데이터의 변경이 Transaction 안에서 실행되어야함
+  @Transactional
+  public class MemberService {
+  
+      private final MemberRepository memberRepository;
+  
+      public MemberService(MemberRepository memberRepository) {
+          this.memberRepository = memberRepository;
+      }
+  ```
 
+- springconfig
+
+  ```java
+  @Configuration
+  public class SpringConfig {
+  
+  // JPA사용
+      private EntityManager em;
+  
+      @Autowired
+      public SpringConfig(EntityManager em) {
+          this.em = em;
+      }
+      @Bean
+      public MemberService memberService() {
+          return new MemberService(memberRepository());
+      }
+  
+      @Bean
+      public MemberRepository memberRepository() {
+          return new JpaMemberRepository(em);
+      }
+  }
+  ```
+
+  
 
 ### 스프링 데이터 JPA
 
@@ -206,13 +442,43 @@
 
 - build.gradle, application.properties -> JPA설정을 그대로 사용한다.
 
-- 순서
+- 스프링 데이터 JPA가 Interface에서 상속받은 (extends JpaRepository<Member, Long>, MemberRepository)를 보고 구현체를 자동으로 만들어서 스프링 빈으로 등록(proxy기술)
 
-  스프링 데이터 JPA가 Interface를 보고 스프링 빈을 자동으로 만들어서 등록
+  ```java
+  public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Long>, MemberRepository{
+  
+      @Override
+      Optional<Member> findByName(String name);
+  }
+  ```
 
-  Interface에서 상속받은 (extends JpaRepository<Member, Long>, MemberRepository)
+  ```java
+  @Configuration
+  public class SpringConfig {
+  
+  // SpringDataJpa 사용
+      private final MemberRepository memberRepository;
+  
+      // JpaRepository를 상속하고 있는 interface SpringDataJpaMemberRepository를 보고
+      // 구현체를 만들어 스프링 빈 등록한다 (자동)
+      // SpringConfig의 생성자가 한 개 이므로 Autowired생략 가능하다
+      @Autowired
+      public SpringConfig(MemberRepository memberRepository) {
+          this.memberRepository = memberRepository;
+      }
+  
+      @Bean
+      public MemberService memberService() {
+          return new MemberService(memberRepository);
+      }
+  }
+  ```
 
-- 상속순서
+  
+
+- 상속관계
+
+  ![image-20210826153314396](md-images/image-20210826153314396.png)
 
   JpaRepository -> PagingAndSortingRepository -> CrudRepository -> Repository
 
@@ -221,6 +487,8 @@
   findAll, save, delete, findOne, 등등등
 
 - 비즈니스 로직에서 Override가 필요한 다른 메소드들마저도 메소드 이름에 따라 JPQL 쿼리문을 만들어주는 규칙이 있다.
+
+  findByName(), findByEmail() 등등
 
   ```java
   //JPQL : select m from Member m where m.name = ?
@@ -233,6 +501,10 @@
   Querydsl 라이브러리로 쿼리를 자바 코드로 안전하게 작성할 수 있으며 동적 쿼리 또한 편리하게 작성 가능하다.
 
   이 조합으로도 어려운 쿼리는 JPA가 제공하는 네이티브 쿼리, JdbcTemplate을 사용하면 된다.
+  
+- JPA + SpringDataJPA + Querydsl
+
+- 순수 JDBC, JDBCTemplate, JPA + MyBatis, native SQL도 가능 (다양한 조합이 가능)
 
 
 
@@ -247,8 +519,6 @@
 - 스프링 데이터 JPA : 구현 클래스 작성할 필요가 없이 인터페이스만으로 개발 완료
 
   
-
-
 
 ### 기타
 
@@ -284,6 +554,8 @@
   ctrl + alt + n : 인라인으로 바꿔준다.
 
   ctrl + alt + v : 표현형식을 바꿔준다. (간편 -> 타입 변수명 = 메소드 ~~맞나?~~)
+
+  alt + enter : 람다 형식으로 바꿔준다.
 
   ctrl + e : 최근에 열어본 파일을 찾을 수 있다.
 
