@@ -190,15 +190,16 @@ class MemberServiceTest {
 
 
 
-### 단축키
+### 단축키모음
 
 - shift + F6 을 누르면 같은 단어를 동시에 바꿀 수 있음
 - ctrl + alt + n : 인라인 표현으로 바꿀 수 있음
 - alt + Insert : 게터, 세터 또는 생성자 만드는 탭을 띄워줌
+- alt + Enter : static 표현으로 바꿀 수 있음
 - ctrl + alt + v : 메소드 사용 형식을 자동으로 바꿔줌
 - ctrl + alt + m : 메소드로 Extract, Test 클래스 만들 때
 - shift + F10 : 직전에 런 한 것을 다시 런
-- ctrl + shift + t : 클래스의 테스트 파일 만들 수 있음
+- ctrl + shift + t : 클래스의 테스트 파일을 같은 이름으로 src/test/java 하위에 만들 수 있음
 
 
 
