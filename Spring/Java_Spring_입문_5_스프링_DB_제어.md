@@ -161,7 +161,7 @@
 
   커밋하려면 @Commit annotation도 있음
 
-- java만 실행하는 테스트를 단위테스트라고 한다.
+- .java 만 실행하는 테스트를 단위테스트라고 한다.
 
   ```java
   @SpringBootTest
@@ -185,7 +185,8 @@
       @Autowired MemberRepository memberRepository;
       // 대충 field injection으로...ㅎㅎ
   
-  // 여긴 지우고 Transactional을 사용하면 됨
+  // DB를 사용할 것이므로 여긴 지우고(프로그램 내 메모리 사용)
+  // Transactional을 사용하면 아래와 같이 변경내용을 삭제하는 코드가 필요 없게됨
   //    @AfterEach
   //    public void afterEach() {
   //        memberRepository.clearStore();
@@ -216,7 +217,7 @@
       }
   }
   ```
-
+  
   
 
 
@@ -354,6 +355,7 @@
   
       private final EntityManager em;
   
+      // 생성자 1개 이므로 Autowired는 생략 (?맞나)
       public JpaMemberRepository(EntityManager em) {
           this.em = em;
       }
@@ -551,14 +553,26 @@
 
 - 단축키
 
-  ctrl + alt + n : 인라인으로 바꿔준다.
+  shift + F6 을 누르면 같은 단어를 동시에 바꿀 수 있음
 
-  ctrl + alt + v : 표현형식을 바꿔준다. (간편 -> 타입 변수명 = 메소드 ~~맞나?~~)
+  ctrl + alt + n : 인라인 표현으로 바꿀 수 있음
 
-  alt + enter : 람다 형식으로 바꿔준다.
+  alt + Insert : 게터, 세터 또는 생성자 만드는 탭을 띄워줌
+
+  alt + Enter : static 표현으로 바꿀 수 있음, 람다 형식으로 바꿀 수 있음
+
+  ctrl + alt + v : 메소드 사용 형식을 자동으로 바꿔줌 (간편 -> 타입 변수명 = 메소드)
+
+  ctrl + alt + m : 메소드로 Extract, Test 클래스 만들 때
+
+  shift + F10 : 직전에 런 한 것을 다시 런
+
+  ctrl + shift + t : 클래스의 테스트 파일을 같은 이름으로 src/test/java 하위에 만들 수 있음
+
+  ctrl + p : argument들어갈 자리에 커서를 놓고 단축키를 누르면 뭐가 필요한지 보여줌
 
   ctrl + e : 최근에 열어본 파일을 찾을 수 있다.
 
-  ctrl + alt + 방향키 : 최근 열어본 파일 내부 위치?까지의 순서로 이동 하는듯..
+  ctrl + alt + 방향키 : 최근 열어본 파일 내부 (위치까지) 순서로 이동 하는듯..
 
 - Interface가 Interface를 상속하는 경우 implements가 아닌 extends를 사용한다.
