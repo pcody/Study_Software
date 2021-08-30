@@ -43,7 +43,7 @@
 
 ## 운영체제
 
-[운영체제](https://www.notion.so/b59b59a9631048c2bdadf08e85fb6126)
+[운영체제](https://github.com/cano721/CS_STUDY/tree/main/OS)
 
 
 
