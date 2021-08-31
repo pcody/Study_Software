@@ -55,7 +55,7 @@
 
 ## 프로그래밍 언어들
 
-[Java](https://www.notion.so/Java-5d730005441143a693e34b82e4066676)
+[Java](https://github.com/cano721/CS_STUDY/tree/main/Java)
 
 
 
