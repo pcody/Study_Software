@@ -1,7 +1,7 @@
 ## Java 내용 정리
 
-1. Java의 특징
-2. JVM
+1. JDK, JRE, JVM
+2. Java의 특징
 3. JSP, Servlet
 4. 
 
