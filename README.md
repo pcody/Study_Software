@@ -70,6 +70,7 @@
 ## 웹
 
 * [쿠키 vs 세션](https://github.com/cano721/CS_STUDY/blob/main/Web/2021-08-24-%EC%BF%A0%ED%82%A4%20vs%20%EC%84%B8%EC%85%98.md)
+* [REST API](https://github.com/cladren123/study/blob/master/ComputerScience/RESTfuAPI/Rest.md)
 
 
 
