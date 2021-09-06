@@ -37,7 +37,7 @@
 
 ## 컴퓨터 구조
 
-[컴퓨터구조](https://www.notion.so/2741dff954574f629cc9efc6d5b800f8)
+[컴퓨터구조](https://github.com/pcody/Study_CS/tree/main/ComputerStructure)
 
 
 
