@@ -61,7 +61,7 @@
 
 ## 네트워크
 
-* [OSI 7계층]()
+* [OSI 7계층](https://github.com/cano721/CS_STUDY/blob/main/Network/2021-08-31-OSI%207%EA%B3%84%EC%B8%B5.md)
 
 
 
