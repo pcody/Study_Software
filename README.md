@@ -10,7 +10,7 @@
 
 ### 공부필
 
-1. [컴퓨터 구조](https://github.com/cano721/Study_CS/tree/main/ComputerStructure)
+1. [컴퓨터 구조](https://github.com/cano721/CS_STUDY/tree/main/ComputerStructure)
 
 2. [운영체제](https://github.com/cano721/CS_STUDY/tree/main/OS)
 
