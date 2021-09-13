@@ -10,71 +10,27 @@
 
 ### 공부필
 
-1. [컴퓨터 구조](#컴퓨터-구조)
+1. [컴퓨터 구조](https://github.com/cano721/Study_CS/tree/main/ComputerStructure)
 
-2. [운영체제](#운영체제)
+2. [운영체제](https://github.com/cano721/CS_STUDY/tree/main/OS)
 
 3. [자료구조 알고리즘](#자료구조-알고리즘)
 
-4. [프로그래밍 언어들](#프로그래밍-언어들)
+4. [프로그래밍 언어들](https://github.com/cano721/CS_STUDY/tree/main/Java)
 
 5. 컴파일러
-6. [데이터베이스](#데이터베이스)
+6. [데이터베이스](https://github.com/cano721/CS_STUDY/tree/main/Database)
 
 
 
 ### 기타..
 
 1. 객체지향 방법론과 UML
-
 2. 수학
-
-3. [네트워크](#네트워크)
-
+3. [네트워크](https://github.com/pcody/Study_CS/tree/main/ComputerStructure)
 4. 인공지능
 
 
-
-## 컴퓨터 구조
-
-[컴퓨터구조](https://github.com/pcody/Study_CS/tree/main/ComputerStructure)
-
-
-
-## 운영체제
-
-[운영체제](https://github.com/cano721/CS_STUDY/tree/main/OS)
-
-
-
-## 자료구조 알고리즘
-
-[자료구조 / 알고리즘](https://www.notion.so/af45cda350ed4672901542e9fefa813f)
-
-
-
-## 프로그래밍 언어들
-
-[Java](https://github.com/cano721/CS_STUDY/tree/main/Java)
-
-
-
-## 네트워크
-
-* [OSI 7계층](https://github.com/cano721/CS_STUDY/blob/main/Network/2021-08-31-OSI%207%EA%B3%84%EC%B8%B5.md)
-
-
-
-
-
-## 데이터베이스
-
-
-
-## 웹
-
-* [쿠키 vs 세션](https://github.com/cano721/CS_STUDY/blob/main/Web/2021-08-24-%EC%BF%A0%ED%82%A4%20vs%20%EC%84%B8%EC%85%98.md)
-* [REST API](https://github.com/cladren123/study/blob/master/ComputerScience/RESTfuAPI/Rest.md)
 
 
 
