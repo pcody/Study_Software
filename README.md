@@ -27,7 +27,7 @@
 
 1. 객체지향 방법론과 UML
 2. 수학
-3. [네트워크](https://github.com/pcody/Study_CS/tree/main/ComputerStructure)
+3. [네트워크](https://github.com/cano721/CS_STUDY/tree/main/Network)
 4. 인공지능
 
 
