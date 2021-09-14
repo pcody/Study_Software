@@ -4,11 +4,12 @@
 2. Web Server, Web Application Server
 3. ORM
 4. JSP, Servlet
-5. MVC, MTV
+5. MVC
+6. MTV
 
 ## 기타
 
-### 앞으로 공부할 내용..
+### 아래 내용은 가볍게 읽어 보기
 
 #### 출처
 
