@@ -1,4 +1,4 @@
-# CS_STUDY
+# Computer Science 공부 자료 모음
 
 1. [컴퓨터 구조](https://github.com/pcody/CS_STUDY/tree/main/ComputerStructure)
 
@@ -12,4 +12,14 @@
 
 6. [네트워크](https://github.com/pcody/CS_STUDY/tree/main/Network)
 
-7.  소프트웨어 공학
+7. 소프트웨어 공학
+
+8. [Spring](./Spring)
+
+9. [Git](./Git)
+
+10. [Arduino](./Arduino)
+
+11. [RaspberryPi](./Network)
+
+12. [ETC](./etc)
