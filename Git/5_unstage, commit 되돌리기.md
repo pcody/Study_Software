@@ -47,3 +47,38 @@ remote repository에 push된 커밋은 reset으로 되돌릴 수 없다.
 remote repository에 push된 커밋을 되돌리려면 revert를 사용한다.
 
 - git revert [commit ID]
+
+
+#### reset, revert 예시
+- 궁금증이 생겼다. rest 시 [commit ID]에는 돌아가고자 하는 마지막 commit ID를 적어야 하는가, 삭제하려고 하는 commit ID를 적어야 하는가..?
+
+
+- 일단 맨 위 커밋을 reset하고자 시도했는데, 헤드는 맨위 커밋에 그대로 있다.
+![image-2022031501](md-images/image-2022031501.png)
+
+
+- soft, mixed 또한 삭제하려는 commit ID로는 생각대로 동작하지 않는다.
+![image-2022031502](md-images/image-2022031502.png)
+![image-2022031503](md-images/image-2022031503.png)
+
+
+- revert는 revert 이력이 추가된다. working directory는 변화가 없음.
+![image-2022031504](md-images/image-2022031504.png)
+
+
+- 그래서 HEAD~2로 위 두개 커밋을 날려보았다. 변경한 코드 자체가 사라져버렸다.
+![image-2022031505](md-images/image-2022031505.png)
+
+
+- git reflog 를 참조하여 HEAD@{7}로 강제 이동시켰다.
+- 커밋은 되어있으나 intelliJ에 코드는 날아가 있는 상태 그대로..
+- 지금 다시 생각해보니 여기 staged된 것이 원복된 변경부분 인듯 싶다.
+![image-2022031506](md-images/image-2022031506.png)
+![image-2022031507](md-images/image-2022031507.png)
+
+
+- 다시 revert했던 곳으로 강제 이동시켜
+- restore로 조심스럽게 빨간색 변경부분을 삭제했더니 intelliJ에서도 코드가 원복되는 것을 확인할 수 있었다
+![image-2022031508](md-images/image-2022031508.png)
+![image-2022031509](md-images/image-2022031509.png)
+![image-2022031510](md-images/image-2022031510.png)
